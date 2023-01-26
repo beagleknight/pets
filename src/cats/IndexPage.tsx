@@ -25,12 +25,12 @@ export const IndexPage = () => {
             </td>
             <td>
               <Link to={cat.id}>Details</Link>
-              {cat.name === "Uhura" ? null : (
+              {cat.name === "Curri" ? null : (
                 <button
                   onClick={(event) => {
                     event.preventDefault();
                     event.stopPropagation();
-                    destroy(cat.id);
+                    destroy(cat);
                   }}
                 >
                   Destroy

@@ -15,6 +15,8 @@
     "@types/react-dom": "^18.0.10",
     "@urql/devtools": "^2.0.3",
     "@urql/exchange-graphcache": "^5.0.8",
+    "@urql/exchange-multipart-fetch": "^1.0.1",
+    "@urql/exchange-retry": "^1.0.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-graphql": "^0.12.0",

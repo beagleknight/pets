@@ -13,7 +13,7 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
-    "mutation CreateCat($input: CreateCatInput!) {\n  catsMutations {\n    create(input: $input) {\n      cat {\n        id\n      }\n      errors {\n        message\n      }\n    }\n  }\n}": types.CreateCatDocument,
+    "mutation CreateCat($input: CreateCatInput!) {\n  catsMutations {\n    create(input: $input) {\n      cat {\n        id\n        name\n      }\n      errors {\n        message\n      }\n    }\n  }\n}": types.CreateCatDocument,
     "mutation DestroyCat($id: ID!) {\n  catsMutations {\n    destroy(id: $id) {\n      cat {\n        id\n      }\n      errors {\n        message\n      }\n    }\n  }\n}": types.DestroyCatDocument,
     "query GetCat($id: ID!) {\n  catsNamespace {\n    cat(id: $id) {\n      id\n      name\n      color\n    }\n  }\n}": types.GetCatDocument,
     "query GetCats {\n  catsNamespace {\n    cats {\n      id\n      name\n    }\n  }\n}": types.GetCatsDocument,
@@ -40,7 +40,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "mutation CreateCat($input: CreateCatInput!) {\n  catsMutations {\n    create(input: $input) {\n      cat {\n        id\n      }\n      errors {\n        message\n      }\n    }\n  }\n}"): (typeof documents)["mutation CreateCat($input: CreateCatInput!) {\n  catsMutations {\n    create(input: $input) {\n      cat {\n        id\n      }\n      errors {\n        message\n      }\n    }\n  }\n}"];
+export function graphql(source: "mutation CreateCat($input: CreateCatInput!) {\n  catsMutations {\n    create(input: $input) {\n      cat {\n        id\n        name\n      }\n      errors {\n        message\n      }\n    }\n  }\n}"): (typeof documents)["mutation CreateCat($input: CreateCatInput!) {\n  catsMutations {\n    create(input: $input) {\n      cat {\n        id\n        name\n      }\n      errors {\n        message\n      }\n    }\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

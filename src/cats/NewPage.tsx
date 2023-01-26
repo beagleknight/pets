@@ -35,7 +35,6 @@ export const NewPage = () => {
       <input
         id="color"
         name="color"
-        type="number"
         onChange={formik.handleChange}
         value={formik.values.color}
       />

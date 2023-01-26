@@ -3,6 +3,7 @@ mutation CreateCat($input: CreateCatInput!) {
     create(input: $input) {
       cat {
         id
+        name
       }
       errors {
         message

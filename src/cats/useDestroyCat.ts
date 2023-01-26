@@ -1,15 +1,22 @@
 import { useMutation } from "@apollo/client";
-import { DestroyCatDocument } from "../graphql/graphql";
+import { DestroyCatDocument, DestroyCatMutation } from "../graphql/graphql";
+
+export type Cat = NonNullable<
+  DestroyCatMutation["catsMutations"]["destroy"]["cat"]
+>;
 
 export const useDestroyCat = () => {
   const [destroyCat, { loading }] = useMutation(DestroyCatDocument);
 
   return {
     loading,
-    destroy(id: string) {
+    destroy(cat: Cat) {
       return destroyCat({
         variables: {
-          id,
+          id: cat.id,
+        },
+        update(cache) {
+          cache.evict({ id: cache.identify(cat) });
         },
       });
     },

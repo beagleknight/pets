@@ -17,12 +17,12 @@ export const ShowPage = () => {
     <section>
       <header>
         <h1>{cat.name}'s page</h1>
-        {cat.name === "Uhura" ? null : (
+        {cat.name === "Curri" ? null : (
           <button
             onClick={async (event) => {
               event.preventDefault();
               event.stopPropagation();
-              await destroy(cat.id);
+              await destroy(cat);
               navigate("/cats");
             }}
           >
