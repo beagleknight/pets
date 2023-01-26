@@ -1,25 +1,23 @@
 import { useFormik } from "formik";
-import { useCreateDog } from "./useCreateDog";
+import { useCreateCat } from "./useCreateCat";
 import { useNavigate } from "react-router-dom";
 
 export const NewPage = () => {
   const navigate = useNavigate();
-  const { create } = useCreateDog();
+  const { create } = useCreateCat();
 
   const formik = useFormik({
     initialValues: {
       name: "",
-      happiness: 0,
-      birthDate: "",
+      color: "",
     },
     onSubmit: async (values) => {
-      const { name, happiness, birthDate } = values;
+      const { name, color } = values;
       await create({
         name,
-        happiness,
-        birthDate,
+        color,
       });
-      navigate("/dogs");
+      navigate("/cats");
     },
   });
 
@@ -33,22 +31,13 @@ export const NewPage = () => {
         value={formik.values.name}
       />
       <br />
-      <label htmlFor="happiness">Happiness</label>
+      <label htmlFor="color">Color</label>
       <input
-        id="happiness"
-        name="happiness"
+        id="color"
+        name="color"
         type="number"
         onChange={formik.handleChange}
-        value={formik.values.happiness}
-      />
-      <br />
-      <label htmlFor="birthDate">Birth date</label>
-      <input
-        id="birthDate"
-        name="birthDate"
-        type="date"
-        onChange={formik.handleChange}
-        value={formik.values.birthDate}
+        value={formik.values.color}
       />
       <br />
       <button type="submit">Submit</button>

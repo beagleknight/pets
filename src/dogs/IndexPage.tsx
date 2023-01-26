@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import { useDestroyDog } from "./useDestroyDog";
 import { useDogs } from "./useDogs";
 
 export const IndexPage = () => {
+  const { destroy } = useDestroyDog();
   const { dogs } = useDogs();
 
   return (
@@ -22,6 +24,17 @@ export const IndexPage = () => {
             <td>{dog.birthDate}</td>
             <td>
               <Link to={dog.id}>Details</Link>
+              {dog.name === "Boira" ? null : (
+                <button
+                  onClick={(event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    destroy(dog.id);
+                  }}
+                >
+                  Destroy
+                </button>
+              )}
             </td>
           </tr>
         ))}

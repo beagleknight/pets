@@ -1,5 +1,5 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -29,6 +29,7 @@ export const RootPage = () => {
       <section>
         <header>
           <h1>Cats</h1>
+          <Link to="new">New cat</Link>
         </header>
         <Outlet />
       </section>

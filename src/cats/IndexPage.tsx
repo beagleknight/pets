@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { useCats } from "./useCats";
+import { useDestroyCat } from "./useDestroyCat";
 
 export const IndexPage = () => {
+  const { destroy } = useDestroyCat();
   const { cats } = useCats();
 
   return (
@@ -20,6 +22,20 @@ export const IndexPage = () => {
             <td>{cat.name}</td>
             <td>
               <Link to={cat.id}>Details</Link>
+            </td>
+            <td>
+              <Link to={cat.id}>Details</Link>
+              {cat.name === "Uhura" ? null : (
+                <button
+                  onClick={(event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    destroy(cat.id);
+                  }}
+                >
+                  Destroy
+                </button>
+              )}
             </td>
           </tr>
         ))}

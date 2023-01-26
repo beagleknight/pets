@@ -1,6 +1,7 @@
 import { IndexPage } from "./IndexPage";
 import { RootPage } from "./RootPage";
 import { ShowPage } from "./ShowPage";
+import { NewPage } from "./NewPage";
 
 export const catsRoutes = [
   {
@@ -14,6 +15,10 @@ export const catsRoutes = [
       {
         path: ":id",
         element: <ShowPage />,
+      },
+      {
+        path: "new",
+        element: <NewPage />,
       },
     ],
   },

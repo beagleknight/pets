@@ -10,6 +10,7 @@ export const dogsRoutes = [
     children: [
       {
         path: "",
+        index: true,
         element: <IndexPage />,
       },
       {

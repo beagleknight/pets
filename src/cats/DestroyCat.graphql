@@ -1,0 +1,12 @@
+mutation DestroyCat($id: ID!) {
+  catsMutations {
+    destroy(id: $id) {
+      cat {
+        id
+      }
+      errors {
+        message
+      }
+    }
+  }
+}

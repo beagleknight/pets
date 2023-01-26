@@ -1,10 +1,52 @@
 {
-    "dogs": [
-        {
-            "id": "1",
-            "name": "Boira",
-            "happiness": 100,
-            "birthDate": "2019-01-13"
-        }
-    ]
+  "dogs": [
+    {
+      "id": "1",
+      "name": "Boira",
+      "happiness": 100,
+      "birthDate": "2019-01-13"
+    },
+    {
+      "id": "2",
+      "name": "",
+      "happiness": 0,
+      "birthDate": ""
+    },
+    {
+      "id": "3",
+      "name": "",
+      "happiness": 0,
+      "birthDate": ""
+    },
+    {
+      "id": "4",
+      "name": "",
+      "happiness": 0,
+      "birthDate": ""
+    },
+    {
+      "id": "5",
+      "name": "",
+      "happiness": 0,
+      "birthDate": ""
+    },
+    {
+      "id": "6",
+      "name": "",
+      "happiness": 0,
+      "birthDate": ""
+    },
+    {
+      "id": "7",
+      "name": "",
+      "happiness": 0,
+      "birthDate": ""
+    },
+    {
+      "id": "8",
+      "name": "sadfasdf",
+      "happiness": 0,
+      "birthDate": ""
+    }
+  ]
 }

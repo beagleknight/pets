@@ -1,0 +1,12 @@
+mutation DestroyDog($id: ID!) {
+  dogsMutations {
+    destroy(id: $id) {
+      dog {
+        id
+      }
+      errors {
+        message
+      }
+    }
+  }
+}

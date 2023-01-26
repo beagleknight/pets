@@ -12,11 +12,9 @@ const readDatabase = (dbName) => {
 };
 
 const writeDatabase = (dbName, dbContent) => {
-  return JSON.parse(
-    fs.writeFileSync(
-      path.join(__dirname, "db", `${dbName}`.json),
-      { [dbName]: dbContent }.toJSON()
-    )
+  fs.writeFileSync(
+    path.join(__dirname, "db", `${dbName}.json`),
+    JSON.stringify({ [dbName]: dbContent }, 2, 2)
   );
 };
 
@@ -29,6 +27,7 @@ var schema = buildSchema(`
 
   type Mutation {
     dogsMutations: DogsMutations!
+    catsMutations: CatsMutations!
   }
 
   type DogsNamespace {
@@ -38,6 +37,7 @@ var schema = buildSchema(`
 
   type DogsMutations {
     create(input: CreateDogInput!): DogPayload!
+    destroy(id: ID!): DogPayload!
   }
 
   input CreateDogInput {
@@ -48,7 +48,22 @@ var schema = buildSchema(`
 
   type DogPayload {
     dog: Dog
-    errors: [Error!]
+    errors: [Error!]!
+  }
+
+  type CatsMutations {
+    create(input: CreateCatInput!): CatPayload!
+    destroy(id: ID!): CatPayload!
+  }
+
+  input CreateCatInput {
+    name: String!
+    color: String!
+  }
+
+  type CatPayload {
+    cat: Cat
+    errors: [Error!]!
   }
 
   type Error {
@@ -102,13 +117,58 @@ var root = {
         const dogs = readDatabase("dogs");
         const { name, happiness, birthDate } = input;
         const newDog = {
+          id: String(dogs.length + 1),
           name,
           happiness,
           birthDate,
         };
-        writeDatabase([...dogs, newDog]);
+        writeDatabase("dogs", [...dogs, newDog]);
         return {
           dog: newDog,
+          errors: [],
+        };
+      },
+      destroy({ id }) {
+        const dogs = readDatabase("dogs");
+        const byeDog = dogs.find((dog) => dog.id === id);
+        writeDatabase(
+          "dogs",
+          dogs.filter((dog) => dog.id !== id)
+        );
+
+        return {
+          dog: byeDog,
+          errors: [],
+        };
+      },
+    };
+  },
+  catsMutations: () => {
+    return {
+      create({ input }) {
+        const cats = readDatabase("cats");
+        const { name, color } = input;
+        const newCat = {
+          id: String(cats.length + 1),
+          name,
+          color,
+        };
+        writeDatabase("cats", [...cats, newCat]);
+        return {
+          cat: newCat,
+          errors: [],
+        };
+      },
+      destroy({ id }) {
+        const cats = readDatabase("cats");
+        const byeCat = cats.find((cat) => cat.id === id);
+        writeDatabase(
+          "cats",
+          cats.filter((cat) => cat.id !== id)
+        );
+
+        return {
+          cat: byeCat,
           errors: [],
         };
       },

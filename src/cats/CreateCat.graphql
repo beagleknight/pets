@@ -1,0 +1,12 @@
+mutation CreateCat($input: CreateCatInput!) {
+  catsMutations {
+    create(input: $input) {
+      cat {
+        id
+      }
+      errors {
+        message
+      }
+    }
+  }
+}
