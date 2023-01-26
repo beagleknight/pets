@@ -1,0 +1,12 @@
+mutation UpdateCat($id: ID!, $input: UpdateCatInput!) {
+  catsMutations {
+    update(id: $id, input: $input) {
+      cat {
+        id
+      }
+      errors {
+        message
+      }
+    }
+  }
+}

@@ -24,11 +24,10 @@ export const IndexPage = () => {
             <td>{dog.birthDate}</td>
             <td>
               <Link to={dog.id}>Details</Link>
+              <Link to={`${dog.id}/edit`}>Edit</Link>
               {dog.name === "Boira" ? null : (
                 <button
                   onClick={(event) => {
-                    event.preventDefault();
-                    event.stopPropagation();
                     destroy(dog.id);
                   }}
                 >

@@ -21,9 +21,7 @@ export const IndexPage = () => {
             <td>{cat.id}</td>
             <td>{cat.name}</td>
             <td>
-              <Link to={cat.id}>Details</Link>
-            </td>
-            <td>
+              <Link to={`${cat.id}/edit`}>Edit</Link>
               <Link to={cat.id}>Details</Link>
               {cat.name === "Curri" ? null : (
                 <button

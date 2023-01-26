@@ -2,6 +2,7 @@ import { IndexPage } from "./IndexPage";
 import { RootPage } from "./RootPage";
 import { ShowPage } from "./ShowPage";
 import { NewPage } from "./NewPage";
+import { EditPage } from "./EditPage";
 
 export const catsRoutes = [
   {
@@ -15,6 +16,10 @@ export const catsRoutes = [
       {
         path: ":id",
         element: <ShowPage />,
+      },
+      {
+        path: ":id/edit",
+        element: <EditPage />,
       },
       {
         path: "new",

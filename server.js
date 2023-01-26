@@ -53,6 +53,7 @@ var schema = buildSchema(`
 
   type CatsMutations {
     create(input: CreateCatInput!): CatPayload!
+    update(id: ID!, input: UpdateCatInput!): CatPayload!
     destroy(id: ID!): CatPayload!
   }
 
@@ -169,6 +170,27 @@ var root = {
 
         return {
           cat: byeCat,
+          errors: [],
+        };
+      },
+      update({ id, input }) {
+        const cats = readDatabase("cats");
+        let updatedCat;
+
+        writeDatabase("cats", [
+          cats.map((cat) => {
+            if (cat.id === id) {
+              updatedCat = {
+                ...cat,
+                ...input,
+              };
+              return updatedCat;
+            }
+            return cat;
+          }),
+        ]);
+        return {
+          cat: updatedCat,
           errors: [],
         };
       },
