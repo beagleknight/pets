@@ -35,7 +35,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "backend": "nodemon server.js"
+    "backend": "nodemon server.js",
+    "codegen:watch": "npx graphql-codegen --watch"
   },
   "eslintConfig": {
     "extends": [

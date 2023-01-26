@@ -62,6 +62,11 @@ var schema = buildSchema(`
     color: String!
   }
 
+  input UpdateCatInput {
+    name: String!
+    color: String!
+  }
+
   type CatPayload {
     cat: Cat
     errors: [Error!]!

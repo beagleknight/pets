@@ -1,18 +1,19 @@
 import { useMutation } from "@apollo/client";
 import {
-  CreateCatDocument,
-  CreateCatInput,
+  UpdateCatDocument,
+  UpdateCatInput,
   GetCatsDocument,
 } from "../graphql/graphql";
 
 export const useUpdateCat = () => {
-  const [createCat, { loading }] = useMutation(UpdateCatMutation);
+  const [createCat, { loading }] = useMutation(UpdateCatDocument);
 
   return {
     loading,
-    create(input: CreateCatInput) {
+    update(cat: any, input: UpdateCatInput) {
       return createCat({
         variables: {
+          id: cat.id,
           input,
         },
         refetchQueries: [GetCatsDocument],

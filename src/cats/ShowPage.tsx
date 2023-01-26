@@ -5,13 +5,13 @@ import { useDestroyCat } from "./useDestroyCat";
 export const ShowPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { destroy } = useDestroyCat();
 
   if (!id) {
     throw new Error("ID not defined");
   }
 
   const { cat } = useCat(id);
+  const { destroy } = useDestroyCat();
 
   return cat ? (
     <section>

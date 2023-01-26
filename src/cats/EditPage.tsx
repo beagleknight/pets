@@ -1,9 +1,17 @@
 import { useFormik } from "formik";
-import { useUpdateCat } from "./useCreateCat";
-import { useNavigate } from "react-router-dom";
+import { useCat } from "./useCat";
+import { useUpdateCat } from "./useUpdateCat";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const EditPage = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
+
+  if (!id) {
+    throw new Error("ID not defined");
+  }
+
+  const { cat } = useCat(id);
   const { update } = useUpdateCat();
 
   const formik = useFormik({
@@ -13,7 +21,7 @@ export const EditPage = () => {
     },
     onSubmit: async (values) => {
       const { name, color } = values;
-      await update({
+      await update(cat, {
         name,
         color,
       });
@@ -41,4 +49,5 @@ export const EditPage = () => {
       <br />
       <button type="submit">Submit</button>
     </form>
+  )
 };
