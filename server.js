@@ -182,8 +182,7 @@ var root = {
         const cats = readDatabase("cats");
         let updatedCat;
 
-        writeDatabase("cats", [
-          cats.map((cat) => {
+        writeDatabase("cats", cats.map((cat) => {
             if (cat.id === id) {
               updatedCat = {
                 ...cat,
@@ -193,7 +192,7 @@ var root = {
             }
             return cat;
           }),
-        ]);
+        );
         return {
           cat: updatedCat,
           errors: [],
