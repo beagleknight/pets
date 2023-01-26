@@ -3,15 +3,18 @@ import {
   UpdateCatDocument,
   UpdateCatInput,
   GetCatsDocument,
+  Cat,
 } from "../graphql/graphql";
 
+export type UpdateCatFormValues = UpdateCatInput;
+
 export const useUpdateCat = () => {
-  const [createCat, { loading }] = useMutation(UpdateCatDocument);
+  const [updateCat, { loading }] = useMutation(UpdateCatDocument);
 
   return {
     loading,
-    update(cat: any, input: UpdateCatInput) {
-      return createCat({
+    update(cat: Cat, input: UpdateCatFormValues) {
+      return updateCat({
         variables: {
           id: cat.id,
           input,

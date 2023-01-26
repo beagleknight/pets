@@ -3,6 +3,7 @@ import { RootPage } from "./RootPage";
 import { ShowPage } from "./ShowPage";
 import { NewPage } from "./NewPage";
 import { EditPage } from "./EditPage";
+import { ShowLayout } from "./ShowLayout";
 
 export const catsRoutes = [
   {
@@ -15,11 +16,19 @@ export const catsRoutes = [
       },
       {
         path: ":id",
-        element: <ShowPage />,
-      },
-      {
-        path: ":id/edit",
-        element: <EditPage />,
+        // TODO: explore loaders
+        element: <ShowLayout />,
+        errorElement: <p>Error!</p>,
+        children: [
+          {
+            path: "",
+            element: <ShowPage />,
+          },
+          {
+            path: "edit",
+            element: <EditPage />,
+          },
+        ],
       },
       {
         path: "new",

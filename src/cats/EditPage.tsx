@@ -1,30 +1,39 @@
-import { useFormik } from "formik";
-import { useCat } from "./useCat";
-import { useUpdateCat } from "./useUpdateCat";
-import { useNavigate, useParams } from "react-router-dom";
+import { FormikErrors, useFormik } from "formik";
+import { UpdateCatFormValues, useUpdateCat } from "./useUpdateCat";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import { ShowLayoutContext } from "./ShowLayout";
 
 export const EditPage = () => {
-  const { id } = useParams();
+  const { cat } = useOutletContext<ShowLayoutContext>();
   const navigate = useNavigate();
-
-  if (!id) {
-    throw new Error("ID not defined");
-  }
-
-  const { cat } = useCat(id);
   const { update } = useUpdateCat();
 
-  const formik = useFormik({
+  const formik = useFormik<UpdateCatFormValues>({
     initialValues: {
-      name: "",
-      color: "",
+      name: cat.name,
+      color: cat.color,
+    },
+    validate(values) {
+      const errors: FormikErrors<UpdateCatFormValues> = {};
+
+      if (!values.name) {
+        errors.name = "Required";
+      }
+
+      if (!values.color) {
+        errors.color = "Required";
+      }
+
+      return errors;
     },
     onSubmit: async (values) => {
       const { name, color } = values;
-      await update(cat, {
-        name,
-        color,
-      });
+      if (cat) {
+        await update(cat, {
+          name,
+          color,
+        });
+      }
       navigate("/cats");
     },
   });
@@ -50,7 +59,9 @@ export const EditPage = () => {
       />
       <br />
       <br />
-      <button className="nes-btn is-primary" type="submit">Submit</button>
+      <button className="nes-btn is-primary" type="submit">
+        Submit
+      </button>
     </form>
-  )
+  );
 };

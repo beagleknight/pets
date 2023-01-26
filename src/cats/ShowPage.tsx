@@ -1,19 +1,13 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useCat } from "./useCat";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import { ShowLayoutContext } from "./ShowLayout";
 import { useDestroyCat } from "./useDestroyCat";
 
 export const ShowPage = () => {
-  const { id } = useParams();
+  const { cat } = useOutletContext<ShowLayoutContext>();
   const navigate = useNavigate();
-
-  if (!id) {
-    throw new Error("ID not defined");
-  }
-
-  const { cat } = useCat(id);
   const { destroy } = useDestroyCat();
 
-  return cat ? (
+  return (
     <section className="nes-container">
       <header>
         <h1>{cat.name}'s page</h1>
@@ -36,7 +30,5 @@ export const ShowPage = () => {
         <li>Color: {cat.color}</li>
       </ul>
     </section>
-  ) : (
-    <p>Not found</p>
   );
 };
