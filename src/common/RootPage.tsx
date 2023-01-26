@@ -2,11 +2,11 @@ import { Link, Outlet } from "react-router-dom";
 
 export const RootPage = () => {
   return (
-    <section>
+    <section className="air">
       <header>
-        <nav>
-          <Link to="dogs">🐶 Dogs</Link>
-          <Link to="cats">😺 Cats</Link>
+        <nav style={{ display: 'flex', gap: 10 }}>
+          <Link className="nes-btn is-primary" to="dogs">🐶 Dogs</Link>
+          <Link className="nes-btn is-primary" to="cats">😺 Cats</Link>
         </nav>
       </header>
       <Outlet />

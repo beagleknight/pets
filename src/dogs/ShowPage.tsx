@@ -14,11 +14,12 @@ export const ShowPage = () => {
   const { dog } = useDog(id);
 
   return dog ? (
-    <section>
+    <section className="nes-container">
       <header>
         <h1>{dog.name}'s page</h1>
         {dog.name === "Boira" ? null : (
           <button
+            className="nes-btn is-error"
             onClick={async (event) => {
               event.preventDefault();
               event.stopPropagation();

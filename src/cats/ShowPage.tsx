@@ -14,11 +14,12 @@ export const ShowPage = () => {
   const { destroy } = useDestroyCat();
 
   return cat ? (
-    <section>
+    <section className="nes-container">
       <header>
         <h1>{cat.name}'s page</h1>
         {cat.name === "Curri" ? null : (
           <button
+            className="nes-btn is-error"
             onClick={async (event) => {
               event.preventDefault();
               event.stopPropagation();

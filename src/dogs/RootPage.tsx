@@ -68,10 +68,10 @@ const client = createClient({
 export const RootPage = () => {
   return (
     <Provider value={client}>
-      <section>
+      <section className="air">
         <header>
           <h1>Dogs</h1>
-          <Link to="new">New dog</Link>
+          <Link className="nes-btn is-success" to="new">New dog</Link>
         </header>
         <Outlet />
       </section>

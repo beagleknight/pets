@@ -27,6 +27,7 @@ export const NewPage = () => {
     <form onSubmit={formik.handleSubmit}>
       <label htmlFor="name">Name</label>
       <input
+        className="nes-input"
         id="name"
         name="name"
         onChange={formik.handleChange}
@@ -35,6 +36,7 @@ export const NewPage = () => {
       <br />
       <label htmlFor="happiness">Happiness</label>
       <input
+        className="nes-input"
         id="happiness"
         name="happiness"
         type="number"
@@ -44,6 +46,7 @@ export const NewPage = () => {
       <br />
       <label htmlFor="birthDate">Birth date</label>
       <input
+        className="nes-input"
         id="birthDate"
         name="birthDate"
         type="date"
@@ -51,7 +54,8 @@ export const NewPage = () => {
         value={formik.values.birthDate}
       />
       <br />
-      <button type="submit">Submit</button>
+      <br />
+      <button className="nes-btn is-primary" type="submit">Submit</button>
     </form>
   );
 };

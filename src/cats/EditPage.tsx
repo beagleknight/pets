@@ -33,6 +33,7 @@ export const EditPage = () => {
     <form onSubmit={formik.handleSubmit}>
       <label htmlFor="name">Name</label>
       <input
+        className="nes-input"
         id="name"
         name="name"
         onChange={formik.handleChange}
@@ -41,13 +42,15 @@ export const EditPage = () => {
       <br />
       <label htmlFor="color">Color</label>
       <input
+        className="nes-input"
         id="color"
         name="color"
         onChange={formik.handleChange}
         value={formik.values.color}
       />
       <br />
-      <button type="submit">Submit</button>
+      <br />
+      <button className="nes-btn is-primary" type="submit">Submit</button>
     </form>
   )
 };

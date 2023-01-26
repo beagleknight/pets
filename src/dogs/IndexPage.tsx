@@ -7,13 +7,13 @@ export const IndexPage = () => {
   const { dogs } = useDogs();
 
   return (
-    <table>
+    <table className="nes-table is-bordered is-centered">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>BirthDate</th>
-          <th>Actions</th>
+          <th style={{width: 20}}>ID</th>
+          <th style={{width: 100}}>Name</th>
+          <th style={{width: 200}}>BirthDate</th>
+          <th style={{width: 500}}>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -22,11 +22,11 @@ export const IndexPage = () => {
             <td>{dog.id}</td>
             <td>{dog.name}</td>
             <td>{dog.birthDate}</td>
-            <td>
-              <Link to={dog.id}>Details</Link>
-              <Link to={`${dog.id}/edit`}>Edit</Link>
+            <td style={{ display: 'flex', gap: 15 }}>
+              <Link className="nes-btn is-primary is-disabled" to={`${dog.id}/edit`} onClick={(event) => { event.preventDefault() }}>Edit</Link>
+              <Link className="nes-btn is-warning" to={dog.id}>Details</Link>
               {dog.name === "Boira" ? null : (
-                <button
+                <button className="nes-btn is-error"
                   onClick={(event) => {
                     destroy(dog.id);
                   }}

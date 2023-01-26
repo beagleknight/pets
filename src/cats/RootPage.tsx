@@ -26,10 +26,10 @@ const client = new ApolloClient({
 export const RootPage = () => {
   return (
     <ApolloProvider client={client}>
-      <section>
+      <section className="air">
         <header>
           <h1>Cats</h1>
-          <Link to="new">New cat</Link>
+          <Link className="nes-btn is-success" to="new">New cat</Link>
         </header>
         <Outlet />
       </section>
