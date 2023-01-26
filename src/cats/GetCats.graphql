@@ -1,0 +1,8 @@
+query GetCats {
+  catsNamespace {
+    cats {
+      id
+      name
+    }
+  }
+}

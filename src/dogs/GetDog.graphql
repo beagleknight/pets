@@ -1,0 +1,10 @@
+query GetDog($id: ID!) {
+  dogsNamespace {
+    dog(id: $id) {
+      id
+      name
+      happiness
+      birthDate
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+    "dogs": [
+        {
+            "id": "1",
+            "name": "Boira",
+            "happiness": 100,
+            "birthDate": "2019-01-13"
+        }
+    ]
+}

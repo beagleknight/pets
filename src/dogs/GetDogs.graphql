@@ -1,0 +1,9 @@
+query GetDogs {
+  dogsNamespace {
+    dogs {
+      id
+      name
+      birthDate
+    }
+  }
+}

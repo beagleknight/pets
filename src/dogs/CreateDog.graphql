@@ -1,0 +1,12 @@
+mutation CreateDog($input: CreateDogInput!) {
+  dogsMutations {
+    create(input: $input) {
+      dog {
+        id
+      }
+      errors {
+        message
+      }
+    }
+  }
+}

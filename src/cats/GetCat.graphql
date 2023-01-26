@@ -1,0 +1,9 @@
+query GetCat($id: ID!) {
+  catsNamespace {
+    cat(id: $id) {
+      id
+      name
+      color
+    }
+  }
+}
