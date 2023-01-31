@@ -55,6 +55,7 @@ var schema = buildSchema(`
     create(input: CreateCatInput!): CatPayload!
     update(id: ID!, input: UpdateCatInput!): CatPayload!
     destroy(id: ID!): CatPayload!
+    pet(id: ID!): CatPayload!
   }
 
   input CreateCatInput {
@@ -92,6 +93,7 @@ var schema = buildSchema(`
     id: ID!
     name: String!
     color: String!
+    pettedAt: String
   }
 `);
 
@@ -182,7 +184,9 @@ var root = {
         const cats = readDatabase("cats");
         let updatedCat;
 
-        writeDatabase("cats", cats.map((cat) => {
+        writeDatabase(
+          "cats",
+          cats.map((cat) => {
             if (cat.id === id) {
               updatedCat = {
                 ...cat,
@@ -191,7 +195,29 @@ var root = {
               return updatedCat;
             }
             return cat;
-          }),
+          })
+        );
+        return {
+          cat: updatedCat,
+          errors: [],
+        };
+      },
+      pet({ id }) {
+        const cats = readDatabase("cats");
+        let updatedCat;
+
+        writeDatabase(
+          "cats",
+          cats.map((cat) => {
+            if (cat.id === id) {
+              updatedCat = {
+                ...cat,
+                pettedAt: new Date().toISOString(),
+              };
+              return updatedCat;
+            }
+            return cat;
+          })
         );
         return {
           cat: updatedCat,

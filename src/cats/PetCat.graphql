@@ -1,0 +1,14 @@
+mutation PetCat($id: ID!) {
+  catsMutations {
+    pet(id: $id) {
+      cat {
+        id
+        pettedAt
+        isPetted @client
+      }
+      errors {
+        message
+      }
+    }
+  }
+}

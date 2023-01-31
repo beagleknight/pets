@@ -3,6 +3,7 @@ mutation UpdateCat($id: ID!, $input: UpdateCatInput!) {
     update(id: $id, input: $input) {
       cat {
         id
+        name
       }
       errors {
         message

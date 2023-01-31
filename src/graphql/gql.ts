@@ -15,9 +15,10 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
 const documents = {
     "mutation CreateCat($input: CreateCatInput!) {\n  catsMutations {\n    create(input: $input) {\n      cat {\n        id\n        name\n      }\n      errors {\n        message\n      }\n    }\n  }\n}": types.CreateCatDocument,
     "mutation DestroyCat($id: ID!) {\n  catsMutations {\n    destroy(id: $id) {\n      cat {\n        id\n      }\n      errors {\n        message\n      }\n    }\n  }\n}": types.DestroyCatDocument,
-    "query GetCat($id: ID!) {\n  catsNamespace {\n    cat(id: $id) {\n      id\n      name\n      color\n    }\n  }\n}": types.GetCatDocument,
-    "query GetCats {\n  catsNamespace {\n    cats {\n      id\n      name\n    }\n  }\n}": types.GetCatsDocument,
-    "mutation UpdateCat($id: ID!, $input: UpdateCatInput!) {\n  catsMutations {\n    update(id: $id, input: $input) {\n      cat {\n        id\n      }\n      errors {\n        message\n      }\n    }\n  }\n}": types.UpdateCatDocument,
+    "query GetCat($id: ID!) {\n  catsNamespace {\n    cat(id: $id) {\n      id\n      name\n      color\n      pettedAt\n      isPetted @client\n    }\n  }\n}": types.GetCatDocument,
+    "query GetCats {\n  catsNamespace {\n    cats {\n      id\n      name\n      pettedAt\n      isPetted @client\n    }\n  }\n}": types.GetCatsDocument,
+    "mutation PetCat($id: ID!) {\n  catsMutations {\n    pet(id: $id) {\n      cat {\n        id\n        pettedAt\n        isPetted @client\n      }\n      errors {\n        message\n      }\n    }\n  }\n}": types.PetCatDocument,
+    "mutation UpdateCat($id: ID!, $input: UpdateCatInput!) {\n  catsMutations {\n    update(id: $id, input: $input) {\n      cat {\n        id\n        name\n      }\n      errors {\n        message\n      }\n    }\n  }\n}": types.UpdateCatDocument,
     "mutation CreateDog($input: CreateDogInput!) {\n  dogsMutations {\n    create(input: $input) {\n      dog {\n        id\n      }\n      errors {\n        message\n      }\n    }\n  }\n}": types.CreateDogDocument,
     "mutation DestroyDog($id: ID!) {\n  dogsMutations {\n    destroy(id: $id) {\n      dog {\n        id\n      }\n      errors {\n        message\n      }\n    }\n  }\n}": types.DestroyDogDocument,
     "query GetDog($id: ID!) {\n  dogsNamespace {\n    dog(id: $id) {\n      id\n      name\n      happiness\n      birthDate\n    }\n  }\n}": types.GetDogDocument,
@@ -49,15 +50,19 @@ export function graphql(source: "mutation DestroyCat($id: ID!) {\n  catsMutation
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query GetCat($id: ID!) {\n  catsNamespace {\n    cat(id: $id) {\n      id\n      name\n      color\n    }\n  }\n}"): (typeof documents)["query GetCat($id: ID!) {\n  catsNamespace {\n    cat(id: $id) {\n      id\n      name\n      color\n    }\n  }\n}"];
+export function graphql(source: "query GetCat($id: ID!) {\n  catsNamespace {\n    cat(id: $id) {\n      id\n      name\n      color\n      pettedAt\n      isPetted @client\n    }\n  }\n}"): (typeof documents)["query GetCat($id: ID!) {\n  catsNamespace {\n    cat(id: $id) {\n      id\n      name\n      color\n      pettedAt\n      isPetted @client\n    }\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query GetCats {\n  catsNamespace {\n    cats {\n      id\n      name\n    }\n  }\n}"): (typeof documents)["query GetCats {\n  catsNamespace {\n    cats {\n      id\n      name\n    }\n  }\n}"];
+export function graphql(source: "query GetCats {\n  catsNamespace {\n    cats {\n      id\n      name\n      pettedAt\n      isPetted @client\n    }\n  }\n}"): (typeof documents)["query GetCats {\n  catsNamespace {\n    cats {\n      id\n      name\n      pettedAt\n      isPetted @client\n    }\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "mutation UpdateCat($id: ID!, $input: UpdateCatInput!) {\n  catsMutations {\n    update(id: $id, input: $input) {\n      cat {\n        id\n      }\n      errors {\n        message\n      }\n    }\n  }\n}"): (typeof documents)["mutation UpdateCat($id: ID!, $input: UpdateCatInput!) {\n  catsMutations {\n    update(id: $id, input: $input) {\n      cat {\n        id\n      }\n      errors {\n        message\n      }\n    }\n  }\n}"];
+export function graphql(source: "mutation PetCat($id: ID!) {\n  catsMutations {\n    pet(id: $id) {\n      cat {\n        id\n        pettedAt\n        isPetted @client\n      }\n      errors {\n        message\n      }\n    }\n  }\n}"): (typeof documents)["mutation PetCat($id: ID!) {\n  catsMutations {\n    pet(id: $id) {\n      cat {\n        id\n        pettedAt\n        isPetted @client\n      }\n      errors {\n        message\n      }\n    }\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation UpdateCat($id: ID!, $input: UpdateCatInput!) {\n  catsMutations {\n    update(id: $id, input: $input) {\n      cat {\n        id\n        name\n      }\n      errors {\n        message\n      }\n    }\n  }\n}"): (typeof documents)["mutation UpdateCat($id: ID!, $input: UpdateCatInput!) {\n  catsMutations {\n    update(id: $id, input: $input) {\n      cat {\n        id\n        name\n      }\n      errors {\n        message\n      }\n    }\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { Link, Outlet } from "react-router-dom";
-
+import { resolvers } from "./resolvers";
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache({
@@ -16,6 +16,7 @@ const client = new ApolloClient({
       },
     },
   }),
+  resolvers,
   defaultOptions: {
     query: {
       fetchPolicy: "cache-first",
@@ -29,7 +30,9 @@ export const RootPage = () => {
       <section className="air">
         <header>
           <h1>Cats</h1>
-          <Link className="nes-btn is-success" to="new">New cat</Link>
+          <Link className="nes-btn is-success" to="new">
+            New cat
+          </Link>
         </header>
         <Outlet />
       </section>

@@ -3,6 +3,8 @@ query GetCats {
     cats {
       id
       name
+      pettedAt
+      isPetted @client
     }
   }
 }

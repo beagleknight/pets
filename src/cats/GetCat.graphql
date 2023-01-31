@@ -4,6 +4,8 @@ query GetCat($id: ID!) {
       id
       name
       color
+      pettedAt
+      isPetted @client
     }
   }
 }

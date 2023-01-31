@@ -11,7 +11,7 @@ const resourcesNamingConvention = {
 };
 
 const config: CodegenConfig = {
-  schema: "http://localhost:4000/graphql",
+  schema: ["http://localhost:4000/graphql", "local-schema.graphql"],
   documents: ["./src/**/*.graphql"],
   generates: {
     "src/graphql/": {

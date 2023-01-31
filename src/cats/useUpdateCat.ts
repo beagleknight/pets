@@ -1,10 +1,6 @@
 import { useMutation } from "@apollo/client";
-import {
-  UpdateCatDocument,
-  UpdateCatInput,
-  GetCatsDocument,
-  Cat,
-} from "../graphql/graphql";
+import { UpdateCatDocument, UpdateCatInput } from "../graphql/graphql";
+import { Cat } from "./useCat";
 
 export type UpdateCatFormValues = UpdateCatInput;
 
@@ -19,27 +15,6 @@ export const useUpdateCat = () => {
           id: cat.id,
           input,
         },
-        refetchQueries: [GetCatsDocument],
-        // NOTE: update mecanism replaces refetch but it is more complicated
-        // update(cache, { data: mutationData }) {
-        //   cache.updateQuery(
-        //     {
-        //       query: GetCatsDocument,
-        //     },
-        //     (data) => {
-        //       const newCat = mutationData?.catsMutations.create.cat;
-        //       if (data && newCat) {
-        //         return {
-        //           ...data,
-        //           catsNamespace: {
-        //             ...data.catsNamespace,
-        //             cats: [...data.catsNamespace.cats, newCat],
-        //           },
-        //         };
-        //       }
-        //     }
-        //   );
-        // },
       });
     },
   };
